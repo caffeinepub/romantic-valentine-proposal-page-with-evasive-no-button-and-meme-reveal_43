@@ -1,0 +1,8 @@
+{
+  "frontend/src/App.tsx": "Main Valentine's Day proposal page with Yes/No buttons, evasive No button behavior, and meme reveal on Yes click with romantic pink/white gradient theme.",
+  "frontend/src/hooks/useEvasiveButton.ts": "Custom React hook that manages the evasive button position logic, calculating safe random positions within viewport boundaries and handling pointer/touch events.",
+  "frontend/src/hooks/useQueries.ts": "Empty placeholder file as no backend queries are needed for this client-side Valentine's page.",
+  "frontend/src/index.css": "Global styles with romantic pink-themed OKLCH color system for light/dark modes, custom animations, and typography settings.",
+  "frontend/src/components/ui/button.tsx": "Shadcn UI Button component with variants (default, outline, ghost, etc.) and sizes, supporting asChild prop for composition.",
+  "frontend/src/lib/utils.ts": "Utility function for merging Tailwind CSS classes using clsx and tailwind-merge."
+}

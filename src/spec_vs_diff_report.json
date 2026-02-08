@@ -1,0 +1,67 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-08T03:16:08.041Z",
+  "summary": "Implements a single-screen Valentine prompt with an evasive “No” button and a “Yes” result view showing “Good choice” and referencing the required meme asset, but deviates from exact button labels/English-only text, adds non-requested Internet Identity/backend scaffolding, and the static image file itself is not evidenced in the diff.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "On initial load, show the question \"Will you be my Valentine?\" with exactly two buttons labeled \"Yes\" and \"No\" (no additional primary actions).",
+      "reason": "The diff shows the buttons labeled with extra punctuation/emojis (\"Yes! 💖\" and \"No 😢\"), and additional user-facing prompt text (\"Choose wisely... 💕\"), so it does not match the exact label requirement.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Add the generated meme image as a static asset under frontend/public/assets/generated and render it directly from the frontend.",
+      "reason": "The app references the asset path, but the diff summary does not show the actual image file added under frontend/public/assets/generated.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Backend canister file added/changed despite requirement that no backend canister changes are required.",
+      "reason": "A new backend file is added even though the BuildRequest states no backend changes are needed.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Internet Identity authentication scaffolding added (hooks/provider and actor logic).",
+      "reason": "Internet Identity authentication is explicitly listed as a non-goal, but the diff adds an InternetIdentityProvider and related hooks plus an actor hook tied to identity.",
+      "evidence": [
+        "frontend/src/main.tsx",
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Footer includes an external link (caffeine.ai).",
+      "reason": "Not requested by the BuildRequest; may be considered an extra action beyond the Valentine prompt interactions.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useEvasiveButton.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/utils.ts",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

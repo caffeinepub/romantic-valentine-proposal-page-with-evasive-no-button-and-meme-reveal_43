@@ -1,0 +1,106 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Valentine proposal single-screen UI with evasive No and meme reveal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build a single-screen Valentine prompt with the exact question and exactly two choices (Yes/No).",
+      "acceptanceCriteria": [
+        "On initial load, the user sees the question \"Will you be my Valentine?\" and exactly two buttons labeled \"Yes\" and \"No\".",
+        "The page has no additional primary actions beyond the Yes/No choice."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the single-screen React UI rendering the prompt text and exactly two actions (\"Yes\" and \"No\") with a minimal layout. Use the shadcn-ui Button component styling pattern (or equivalent existing shadcn button component if already present) to keep buttons consistent; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ui/button.tsx",
+          "operation": "create",
+          "description": "Add a shadcn-ui compatible Button component (if not already present in the project) to support consistent button styling/variants used by the Valentine prompt. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Make the \"No\" button evasive on hover/touch while staying fully within the viewport.",
+      "acceptanceCriteria": [
+        "On desktop browsers, moving the cursor onto the \"No\" button causes it to relocate immediately.",
+        "On touch devices (including iPad Chrome), attempting to tap the \"No\" button causes it to relocate before a click/tap is registered.",
+        "The \"No\" button never relocates off-screen; it remains fully visible and within the viewport after each move.",
+        "The user cannot successfully click/tap the \"No\" button under normal use because it moves away on interaction."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useEvasiveButton.ts",
+          "operation": "create",
+          "description": "Implement a React hook that computes safe random positions for the \"No\" button within a bounding container/viewport, handling pointer enter and pointer down/touch start so the button moves before a click is registered, and clamping to keep it fully visible on iPad-sized viewports."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the evasive behavior into the \"No\" button using pointer/touch-safe handlers and container-relative positioning so it relocates immediately and never goes off-screen."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "On \"Yes\" click, replace the choice UI with a confirmation view showing the meme and the exact text \"Good choice\".",
+      "acceptanceCriteria": [
+        "Clicking the \"Yes\" button hides or disables both buttons and shows a result state.",
+        "The result state includes the exact text \"Good choice\" (English, matching capitalization and spacing).",
+        "The result state displays the provided/generated meme image clearly on both desktop and iPad Chrome."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add state to switch from the choice UI to a result view on \"Yes\" click; ensure the result view shows the exact text \"Good choice\" and renders the static meme image at a responsive size optimized for iPad Chrome."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Apply a romantic pink-and-white theme with a clean, responsive layout optimized for iPad Chrome.",
+      "acceptanceCriteria": [
+        "The dominant colors used are pink and white; the overall styling reads as romantic and minimal.",
+        "Layout is responsive and usable on iPad-sized viewports in Chrome (no horizontal scrolling; key content fits on screen).",
+        "Animations/transitions (if any) are smooth and do not block interaction."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create Tailwind entry CSS and define global theme tokens/styles (pink/white background, romantic typography defaults, smooth transitions) using existing Tailwind/CSS-variable conventions so the UI is minimal and iPad-friendly."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply Tailwind utility classes for a centered, responsive layout (no horizontal scrolling) and touch-friendly spacing/sizing; keep animations subtle and non-blocking."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add the generated meme image as a frontend static asset and load it directly in the UI.",
+      "acceptanceCriteria": [
+        "The meme image file exists under frontend/public/assets/generated.",
+        "The app references the static asset path directly and it loads in the browser without backend involvement."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/valentine-good-choice-meme.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated image asset file at the exact required path for direct static serving by the frontend build."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Reference and render the static image from frontend/public via the exact file path frontend/public/assets/generated/valentine-good-choice-meme.dim_1024x1024.png so it loads without any backend involvement."
+        }
+      ]
+    }
+  ]
+}

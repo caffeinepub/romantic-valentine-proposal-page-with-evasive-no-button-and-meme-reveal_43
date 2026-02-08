@@ -1,0 +1,17 @@
+{
+  "backend/main.mo": "Empty Motoko actor with no backend logic.",
+  "feature_evidence.json": "Feature report describing Valentine UI, evasive button behavior, meme reveal, theme, and related files/components.",
+  "frontend-file-summaries.txt": "Text file mapping frontend source paths to short descriptive summaries.",
+  "frontend/index.css": "Tailwind base/theme variables defining light/dark palettes and core layout styles.",
+  "frontend/index.html": "HTML entry point mounting the React app and loading main.tsx.",
+  "frontend/src/App.tsx": "Main React component showing the Valentine prompt, Yes/No buttons, evasive No logic, and meme reveal on Yes.",
+  "frontend/src/hooks/useActor.ts": "Hook that creates and manages a backend actor using Internet Identity and react‑query.",
+  "frontend/src/hooks/useEvasiveButton.ts": "Hook computing random safe positions for the No button and handling pointer/touch triggers.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Internet Identity auth provider and hook managing login, stored identities, and status.",
+  "frontend/src/hooks/useQueries.ts": "Empty placeholder module for backend queries.",
+  "frontend/src/index.css": "Global Tailwind styles and pink-themed OKLCH variables, animations, and typography.",
+  "frontend/src/lib/utils.ts": "Utility for merging class names using clsx and tailwind-merge.",
+  "frontend/src/main.tsx": "React entry script wiring QueryClient, InternetIdentityProvider, and rendering App.",
+  "frontend/tailwind.config.js": "TailwindCSS configuration enabling dark mode, custom color tokens, extended theming, animations, and plugins for typography, container queries, and animations.",
+  "project_state.json": "Project metadata describing a Valentine proposal webpage with Yes/No interaction, evasive No button, meme reveal on Yes, and pink/white theme for iPad Chrome."
+}
